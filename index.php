@@ -15,6 +15,7 @@
         <div class="table-responsive">
             <h3 align="center"> PHP와 MySQL에서 Ajax jQuery를 이용한 실시간 테이블 추가 편지 삭제 </h3><br />
             <!-- 이곳에 ajax에서 받아온 데이터를 뿌릴 것이다 -->
+            <div id="run_result"></div>
             <div id="live_data"></div>
         </div>
 
@@ -34,6 +35,8 @@
                 method: "POST",
                 success: function(data) {
                     $('#live_data').html(data);
+                    //$('#live_data').text(data);
+                    $('#run_result').html("데이터 가져오기 완료!");
                 }
             })
         }
@@ -65,7 +68,8 @@
                 },
                 dataType: "text",
                 success: function(data) {
-                    alert(data);
+                    $('#run_result').html(data);
+                    //alert(data);
                     fetch_data();
                 }
 
@@ -86,7 +90,8 @@
                 },
                 dataType: "text",
                 success: function(data) {
-                    alert(data);
+                    $('#run_result').html(data);
+                    //alert(data);
                 }
             });
         }
@@ -102,8 +107,8 @@
         //이름 칼럼에서 text 필드에 입려후 마우스를 바깥에 클릭했을때
         $(document).on('blur', '.last_name', function() {
             var id = $(this).data("id2");
-            var first_name = $(this).text();
-            edit_data(id, first_name, "last_name");
+            var last_name = $(this).text();
+            edit_data(id, last_name, "last_name");
         });
 
 
@@ -120,7 +125,8 @@
                     },
                     dataType: "text",
                     success: function(data) {
-                        alert(data);
+                        $('#run_result').html(data);
+                        //alert(data);
                         fetch_data();
                     }
                 });

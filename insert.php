@@ -20,16 +20,38 @@ else
 if ($isInsert == TRUE) {
 
     try { 
-        $sql = "
-            insert into users(
-                first_name, 
-                last_name) 
+        // $sql = "
+        //     insert into users(
+        //         first_name, 
+        //         last_name) 
+        //         values(
+        //         '{$first_name}',
+        //         '{$last_name}'
+        //     )";
+
+        $sql = "insert into users(
+                    first_name, 
+                    last_name) 
                 values(
-                '{$first_name}',
-                '{$last_name}'
-            )";
+                    :first_name,
+                    :last_name
+                )";
+
+        // $sql = "insert into users(
+        //       first_name, 
+        //         last_name) 
+        //         values(
+        //         ?,
+        //         ?'
+        //     )";
+
 
         $stmt = $con->prepare($sql);
+
+        $stmt->bindParam(':first_name', $first_name);
+        $stmt->bindParam(':last_name', $last_name);
+
+
 
         $stmt->execute();
 
